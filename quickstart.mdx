@@ -1,0 +1,138 @@
+---
+title: Getting Started with Your Documentation Space
+description: Quick guide to set up your account and create your first documentation project in under 5 minutes.
+---
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+<Callout kind="info">
+
+- A modern web browser (Chrome, Firefox, Safari, or Edge)
+- An email address for account verification
+- Optional: Git CLI installed for advanced file uploads
+
+</Callout>
+
+## Create Your Account and First Space
+
+Follow these steps to register, log in, and set up your documentation space. The entire process takes under 5 minutes.
+
+<Steps>
+  <Step title="Sign Up" icon="user-plus">
+
+    Visit [https://app.godfredosei.com](https://app.godfredosei.com) and click **Sign Up**.
+
+    Fill in your details:
+
+    | Field       | Example                  |
+    |-------------|--------------------------|
+    | Email       | user@example.com        |
+    | Password    | StrongPassword123!      |
+    | Full Name   | Your Name               |
+
+    Verify your email and proceed to login.
+
+  </Step>
+
+  <Step title="Log In" icon="log-in">
+
+    Enter your credentials on the login page.
+
+    <Callout kind="tip">
+      Enable two-factor authentication for added security after your first login.
+    </Callout>
+
+  </Step>
+
+  <Step title="Create Documentation Space" icon="plus">
+
+    From the dashboard, click **New Space**.
+
+    Enter:
+    - Space Name: `My Project Docs`
+    - Description: `Documentation for my project`
+
+    Select **Public** or **Private** visibility, then create the space.
+
+  </Step>
+
+  <Step title="Upload Initial Files" icon="upload">
+
+    In your new space, use the file uploader.
+
+    <Tabs>
+      <Tab title="Drag & Drop" icon="mouse-pointer">
+        Drag your `README.mdx` and other MDX files into the upload area.
+      </Tab>
+      <Tab title="CLI Upload" icon="terminal">
+        Use the Godfred Osei CLI:
+
+````bash
+npm install -g @godfredosei/cli
+godfred login --email user@example.com
+godfred space upload MyProjectDocs ./docs/
+````
+
+      </Tab>
+    </Tabs>
+
+  </Step>
+</Steps>
+
+## Basic Interface Tour
+
+Your documentation space dashboard provides intuitive tools for managing content.
+
+<Columns cols={3}>
+  <Card title="Editor" icon="edit-3" href="#editor">
+    Real-time MDX editor with live preview and syntax highlighting.
+  </Card>
+  <Card title="Spaces" icon="layers" href="#spaces">
+    Manage multiple documentation spaces from one view.
+  </Card>
+  <Card title="Publish" icon="globe" href="#publish">
+    One-click publishing to custom domains or subpaths.
+  </Card>
+</Columns>
+
+<Expandable title="Advanced Editor Features" default-open="false">
+
+  The editor supports:
+  - Auto-complete for components like `<Callout>`
+  - Version history with diff views
+  - Theme preview (light/dark)
+
+</Expandable>
+
+## Next Steps
+
+Explore more features:
+
+<CodeGroup tabs="JavaScript,Python">
+```javascript
+// Example API call to list spaces
+const response = await fetch('https://api.godfredosei.com/spaces', {
+  headers: { Authorization: `Bearer ${YOUR_API_KEY}` }
+});
+const spaces = await response.json();
+console.log(spaces);
+```
+```python
+import requests
+
+response = requests.get(
+    'https://api.godfredosei.com/spaces',
+    headers={'Authorization': f'Bearer {YOUR_API_KEY}'}
+)
+spaces = response.json()
+print(spaces)
+```
+</CodeGroup>
+
+<Callout kind="success">
+
+Congratulations! You've set up your first documentation space. Check out the [Introduction](/introduction) for core concepts or [Authentication](/authentication) for API access.
+
+</Callout>

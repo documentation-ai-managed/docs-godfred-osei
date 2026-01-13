@@ -1,0 +1,137 @@
+---
+title: Customizing Your Documentation Space
+description: Learn how to configure settings, themes, and permissions to tailor the platform to your project's needs.
+---
+
+## Overview
+
+Customize your godfred osei documentation space to match your project's branding and workflow. Adjust themes, set user permissions, integrate external tools, and manage backups directly from the dashboard at `https://dashboard.example.com/settings`.
+
+<Columns cols={3}>
+  <Card title="Theme Customization" icon="palette" href="#theme-customization">
+    Apply your brand colors and logos.
+  </Card>
+  <Card title="User Permissions" icon="users" href="#permissions">
+    Control access levels for team members.
+  </Card>
+  <Card title="Integrations" icon="plug" href="#integrations">
+    Connect with GitHub, Slack, and more.
+  </Card>
+</Columns>
+
+## Theme and Branding Customization
+
+Tailor the visual appearance using the theme editor. Start by navigating to Settings > Themes.
+
+<Steps>
+  <Step title="Access Theme Settings" icon="settings">
+    Log in to `https://dashboard.example.com` and select **Themes** from the sidebar.
+  </Step>
+  <Step title="Update Colors" icon="palette">
+    Enter your primary color, such as `#3B82F6` for godfred osei branding.
+  </Step>
+  <Step title="Upload Logo" icon="image">
+    Drag and drop your logo file (PNG or SVG, `<128KB`).
+  </Step>
+  <Step title="Preview and Save" icon="check-circle">
+    Preview changes live, then click **Save**.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Changes apply instantly across all pages. Test on multiple devices for responsiveness.
+</Callout>
+
+## User Roles and Permissions Setup
+
+Define roles to manage access. godfred osei supports three built-in roles: Admin, Editor, and Viewer.
+
+| Role    | Edit Pages | Manage Users | Delete Content | View Analytics |
+|---------|------------|--------------|----------------|---------------|
+| Admin   | Yes       | Yes         | Yes            | Yes           |
+| Editor  | Yes       | No          | No             | Yes           |
+| Viewer  | No        | No          | No             | Yes           |
+
+<Tabs>
+  <Tab title="Add Admin" icon="shield">
+    Go to **Users > Invite**, select **Admin**, and enter the email.
+  </Tab>
+  <Tab title="Set Viewer Permissions" icon="eye">
+    For read-only access, assign **Viewer** during invitation.
+  </Tab>
+</Tabs>
+
+<Expandable title="Advanced Permission Rules" default-open="false">
+  Use custom rules for granular control:
+
+  ```json
+  {
+    "rules": [
+      {
+        "path": "/docs/private/*",
+        "roles": ["admin", "editor"]
+      }
+    ]
+  }
+  ```
+
+  Save in **Settings > Permissions > Advanced**.
+</Expandable>
+
+## Integration with External Tools
+
+Connect godfred osei to streamline workflows.
+
+<CodeGroup tabs="GitHub,Slack">
+  ```json
+  {
+    "github": {
+      "repo": "your-org/godfred-osei-docs",
+      "webhook": "https://api.example.com/webhooks/github",
+      "secret": "YOUR_WEBHOOK_SECRET"
+    }
+  }
+  ```
+  ```json
+  {
+    "slack": {
+      "channel": "#docs-updates",
+      "webhook": "https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK"
+    }
+  }
+  ```
+</CodeGroup>
+
+Follow these steps for GitHub sync:
+
+1. Generate a webhook at `https://api.example.com/webhooks`.
+2. Paste the config into **Settings > Integrations > GitHub**.
+3. Test the connection.
+
+## Backup and Export Configurations
+
+Protect your content with automated backups.
+
+<Callout kind="alert">
+  Enable backups weekly to avoid data loss. Exports include all pages and assets.
+</Callout>
+
+Configure via **Settings > Backups**:
+
+```yaml
+backups:
+  schedule: "0 2 * * 0"  # Weekly on Sunday at 2AM
+  storage: "s3://your-bucket/godfred-osei-backups"
+  retention: 90  # Days
+```
+
+Export manually as ZIP or Markdown bundle for migration.
+
+<Expandable title="Troubleshooting Backups">
+  Common issues:
+
+  - **Storage full**: Increase quota in cloud provider.
+  - **Permission denied**: Verify IAM roles for S3 access.
+
+  Run `godfred-osei backup --test` in CLI for diagnostics.
+</Expandable>
